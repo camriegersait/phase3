@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts@3.46.0/dist/apexcharts.min.js"></script>
     <title>Document</title>
 </head>
 <body style="background-color: #E7E8D5;">
@@ -38,99 +37,122 @@ Home page (Alex):
     <p class="mx-auto mt-2 max-w-lg text-center text-4xl font-semibold tracking-tight text-balance text-stone-800 sm:text-5xl">Welcome User</p>
     <div class="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
       <div class="relative lg:row-span-2">
-        <div style="background-color: #84915D;" class="absolute inset-px rounded-lg bg-gray-800 lg:rounded-l-4xl"></div>
-        <div class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] lg:rounded-l-[calc(2rem+1px)]">
+        <div style="background-color: #84915D;" class="absolute inset-px rounded-4xl"></div>
+        <div class="relative flex h-full flex-col overflow-hidden">
           <div class="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
-            <p class="mt-2 text-lg font-medium tracking-tight text-white max-lg:text-center">Mobile friendly</p>
-            <p class="mt-2 max-w-lg text-sm/6 text-gray-800 max-lg:text-center">Anim aute id magna aliqua ad ad non deserunt sunt. Qui irure qui lorem cupidatat commodo.</p>
+            <p class="mt-2 text-lg font-medium tracking-tight text-white max-lg:text-center">Past Spendings</p>
+            <p class="mt-2 max-w-lg text-sm/6 text-gray-800 max-lg:text-center">You have spent 0.7% more than your average this month!</p>
           </div>
           
             
-<div class="max-w-sm w-full bg-white rounded-lg shadow-sm dark:bg-gray-800 p-4 md:p-6">
-  <div class="flex justify-between border-gray-200 border-b dark:border-gray-700 pb-3">
-    <dl>
-      <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Profit</dt>
-      <dd class="leading-none text-3xl font-bold text-gray-900 dark:text-white">$5,405</dd>
-    </dl>
-    <div>
-      <span class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-green-900 dark:text-green-300">
-        <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4"/>
-        </svg>
-        Profit rate 23.5%
-      </span>
+<div style="width:100%;" class="relative flex flex-col rounded-b-4xl">
+  <div class="relative mx-4 mt-4 flex flex-col gap-4 overflow-hidden rounded-none bg-transparent bg-clip-border text-gray-700 shadow-none md:flex-row md:items-center">
+    <div class="w-max rounded-lg text-white">
     </div>
   </div>
-
-  <div class="grid grid-cols-2 py-3">
-    <dl>
-      <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Income</dt>
-      <dd class="leading-none text-xl font-bold text-green-500 dark:text-green-400">$23,635</dd>
-    </dl>
-    <dl>
-      <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Expense</dt>
-      <dd class="leading-none text-xl font-bold text-red-600 dark:text-red-500">-$18,230</dd>
-    </dl>
+  <div class="pt-6 px-2 pb-0 rounded-4xl">
+    <div id="bar-chart"></div>
   </div>
-
-  <div id="bar-chart"></div>
-    <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
-      <div class="flex justify-between items-center pt-5">
-        <!-- Button -->
-        <button
-          id="dropdownDefaultButton"
-          data-dropdown-toggle="lastDaysdropdown"
-          data-dropdown-placement="bottom"
-          class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
-          type="button">
-          Last 6 months
-          <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-          </svg>
-        </button>
-        <!-- Dropdown menu -->
-        <div id="lastDaysdropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
-            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-              <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Yesterday</a>
-              </li>
-              <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Today</a>
-              </li>
-              <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 7 days</a>
-              </li>
-              <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 30 days</a>
-              </li>
-              <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 90 days</a>
-              </li>
-              <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 6 months</a>
-              </li>
-              <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last year</a>
-              </li>
-            </ul>
-        </div>
-        <a
-          href="#"
-          class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
-          Revenue Report
-          <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-          </svg>
-        </a>
-      </div>
-    </div>
 </div>
+ 
+<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script>
+const chartConfig = {
+  series: [
+    {
+      name: "Sales",
+      data: [2542, 2431, 3000, 1804, 4430, 1792, 2254, 2300, 3010],
+    },
+  ],
+  chart: {
+    type: "bar",
+    height: 240,
+    toolbar: {
+      show: false,
+    },
+  },
+  title: {
+    show: "",
+  },
+  dataLabels: {
+    enabled: false,
+  },
+  colors: ["#344A17"],
+  plotOptions: {
+    bar: {
+      columnWidth: "40%",
+      borderRadius: 2,
+    },
+  },
+  xaxis: {
+    axisTicks: {
+      show: false,
+    },
+    axisBorder: {
+      show: false,
+    },
+    labels: {
+      style: {
+        colors: "#616161",
+        fontSize: "12px",
+        fontFamily: "inherit",
+        fontWeight: 400,
+      },
+    },
+    categories: [
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ],
+  },
+  yaxis: {
+    labels: {
+      style: {
+        colors: "#616161",
+        fontSize: "12px",
+        fontFamily: "inherit",
+        fontWeight: 400,
+      },
+    },
+  },
+  grid: {
+    show: true,
+    borderColor: "#dddddd",
+    strokeDashArray: 5,
+    xaxis: {
+      lines: {
+        show: true,
+      },
+    },
+    padding: {
+      top: 5,
+      right: 20,
+    },
+  },
+  fill: {
+    opacity: 0.8,
+  },
+  tooltip: {
+    theme: "dark",
+  },
+};
+ 
+const chart = new ApexCharts(document.querySelector("#bar-chart"), chartConfig);
+ 
+chart.render();
+</script>
 
 
         </div>
-        <div class="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-white/15 lg:rounded-l-4xl"></div>
+        <div class="pointer-events-none absolute inset-px rounded-lg rounded-4xl"></div>
       </div>
-      <div class="relative max-lg:row-start-1">
+      <div  class="relative max-lg:row-start-1">
         <div style="background-color: #84915D;" class="absolute inset-px rounded-lg bg-gray-800 max-lg:rounded-4xl"></div>
         <div  class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)] max-lg:rounded-t-[calc(2rem+1px)]">
           <div class="px-8 pt-8 sm:px-10 sm:pt-10">
@@ -160,40 +182,39 @@ Home page (Alex):
 
           </div>
         </div>
-        <div class="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-white/15 max-lg:rounded-t-4xl"></div>
+        <div class="pointer-events-none absolute inset-px rounded-lg  outline outline-white/15 max-lg:rounded-t-4xl"></div>
       </div>
-      <div class="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2">
-        <div class="absolute inset-px rounded-lg bg-gray-800"></div>
-        <div style="background-color: #84915D;" class="relative flex h-full flex-col overflow-hidden rounded-[calc(var(--radius-lg)+1px)]">
+      <div  class="relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2 rounded-4xl">
+        <div class="absolute inset-px rounded-4xl"></div>
+        <div style="background-color: #84915D;" class="relative flex h-full flex-col overflow-hidden rounded-4xl">
           <div class="px-8 pt-8 sm:px-10 sm:pt-10">
-            <p class="mt-2 text-lg font-medium tracking-tight text-white max-lg:text-center">Security</p>
-            <p class="mt-2 max-w-lg text-sm/6 text-gray-800 max-lg:text-center">Morbi viverra dui mi arcu sed. Tellus semper adipiscing suspendisse semper morbi.</p>
+            <p class="mt-2 text-lg font-medium tracking-tight text-white max-lg:text-center">Upcoming Payments</p>
+            <p class="mt-2 max-w-lg text-sm/6 text-gray-800 max-lg:text-center">You are ahead on schedule for 2 out of 3 upcoming payments!</p>
           </div>
           <div class="@container flex flex-1 items-center max-lg:py-6 lg:pb-2">
-            <h2 class="mb-2 text-lg font-semibold text-gray-900 dark:text-white">Password requirements:</h2>
-            <ul class="max-w-md space-y-1 text-gray-500 list-inside dark:text-gray-400">
+            <ul class="max-w-md space-y-1 text-white list-inside pl-10 pb-3">
                 <li class="flex items-center">
-                    <svg class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="w-3.5 h-3.5 me-2 text-green-500 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                     </svg>
-                    At least 10 characters
+                    Gym Membership ($60)
                 </li>
                 <li class="flex items-center">
-                    <svg class="w-3.5 h-3.5 me-2 text-green-500 dark:text-green-400 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="w-3.5 h-3.5 me-2 text-green-500  shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                     </svg>
-                    At least one lowercase character
+                    Rent ($1675)
                 </li>
                 <li class="flex items-center">
-                    <svg class="w-3.5 h-3.5 me-2 text-gray-500 dark:text-gray-400 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+                    <svg class="w-3.5 h-3.5 me-2 text-red-500 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                         <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
                     </svg>
-                    At least one special character, e.g., ! @ # ?
+                    Spotify Premium ($13)
                 </li>
             </ul>
           </div>
         </div>
-        <div class="pointer-events-none absolute inset-px rounded-lg shadow-sm outline outline-white/15"></div>
+        <div class="pointer-events-none absolute inset-px rounded-lg outline outline-white/15"></div>
       </div>
       <div class="relative lg:row-span-2">
       </div>
@@ -201,7 +222,7 @@ Home page (Alex):
   </div>
 </div>
 
-<div style="background-color: #84915D;" class="fixed bottom-0 left-0 z-50 w-full h-10 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600 rounded-t-lg">
+<div style="background-color: #84915D;" class="fixed bottom-0 left-0 z-50 w-full h-10 border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600 rounded-t-lg">
     <div class="grid h-full max-w-lg grid-cols-3 mx-auto font-medium">
         <a  type="button" class="m-1 inline-flex flex-col items-center justify-center px-5 hover:bg-lime-950 group rounded-lg">
             <svg class="w-6 h-6 mb-0 text-stone-700 group-hover:text-stone-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
