@@ -38,11 +38,12 @@ Home page (Alex):
     <div class="mt-10 grid gap-4 sm:mt-16 lg:grid-cols-3 lg:grid-rows-2">
       <div class="relative lg:row-span-2">
         <div style="background-color: #84915D;" class="absolute inset-px rounded-4xl"></div>
-        <div class="relative flex h-full flex-col overflow-hidden">
-          <div class="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
-            <p class="mt-2 text-lg font-medium tracking-tight text-white max-lg:text-center">Past Spendings</p>
-            <p class="mt-2 max-w-lg text-sm/6 text-gray-800 max-lg:text-center">You have spent 0.7% more than your average this month!</p>
-          </div>
+
+<div class="relative flex h-full flex-col overflow-hidden">
+  <div class="px-8 pt-8 pb-3 sm:px-10 sm:pt-10 sm:pb-0">
+    <p class="mt-2 text-lg font-medium tracking-tight text-white max-lg:text-center">Past Spendings</p>
+      <p class="mt-2 max-w-lg text-sm/6 text-gray-800 max-lg:text-center">You have spent 0.7% more than your average this month!</p>
+      </div>
           
             
 <div style="width:100%;" class="relative flex flex-col rounded-b-4xl">
@@ -144,13 +145,12 @@ const chartConfig = {
 };
  
 const chart = new ApexCharts(document.querySelector("#bar-chart"), chartConfig);
- 
+
 chart.render();
 </script>
+</div>
 
-
-        </div>
-        <div class="pointer-events-none absolute inset-px rounded-lg rounded-4xl"></div>
+    <div class="pointer-events-none absolute inset-px rounded-lg rounded-4xl"></div>
       </div>
       <div  class="relative max-lg:row-start-1">
         <div style="background-color: #84915D;" class="absolute inset-px rounded-lg bg-gray-800 max-lg:rounded-4xl"></div>

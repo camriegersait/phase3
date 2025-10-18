@@ -4,16 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <script src="plotly-3.1.0.min.js" charset="utf-8"></script>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
     <title>Forecast</title>
+    <style>
+    .apexcharts-zoom-icon svg {
+    fill: #C4CAD0 !important;
+    }
+
+</style>
 </head>
 
 <!-- Forecast page (Cam):
 - takes inputted statistics from receipts page (income, bills, other outcome sources, goals, etc.) and provides data visualization 
 -->
-<body style="background-color: #E7E8D5;">
+<body style="background-color: #E7E8D5;" class="pt-12 pb-10">
 
-<nav style="background-color: #344A17;" class="border-gray-200 dark:bg-gray-900">
+<nav style="background-color: #344A17;" class="fixed top-0 left-0 right-0 z-50 border-gray-200 dark:bg-gray-900">
   <div class="h-12 max-w-screen-xl flex flex-wrap items-center content-center justify-between mx-auto p-4">
     <a class="mt-2 flex items-center space-x-3 rtl:space-x-reverse">
         <svg class="mb-2 w-6 h-6 text-gray-800 dark:text-white" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none" viewBox="0 0 24 24">
@@ -29,100 +35,178 @@
   </div>
 </nav>
 
-<div class="max-w-sm w-full bg-white rounded-lg shadow-sm dark:bg-gray-800 p-4 md:p-6">
-  <div class="flex justify-between border-gray-200 border-b dark:border-gray-700 pb-3">
-    <dl>
-      <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Profit</dt>
-      <dd class="leading-none text-3xl font-bold text-gray-900 dark:text-white">$5,405</dd>
-    </dl>
-    <div>
-      <span class="bg-green-100 text-green-800 text-xs font-medium inline-flex items-center px-2.5 py-1 rounded-md dark:bg-green-900 dark:text-green-300">
-        <svg class="w-2.5 h-2.5 me-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 14">
-          <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13V1m0 0L1 5m4-4 4 4"/>
-        </svg>
-        Profit rate 23.5%
-      </span>
+
+<div style="background-color: #84915D;" class="rounded-4xl p-2 m-6 justify-between content-center">
+  
+  <div class="relative flex h-full flex-col overflow-hidden">  
+  <p class="m-4 w-full text-center text-center text-4xl font-semibold tracking-tight text-balance text-stone-800 sm:text-5xl">Daily Net Spending</p>
+            
+<div style="width:100%;" class="relative flex flex-col rounded-b-4xl">
+  <div class="relative mx-4  flex flex-col gap-4 overflow-hidden rounded-none bg-transparent bg-clip-border text-gray-700 shadow-none md:flex-row md:items-center">
+    <div class="w-max rounded-lg text-white">
     </div>
   </div>
-
-  <div class="grid grid-cols-2 py-3">
-    <dl>
-      <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Income</dt>
-      <dd class="leading-none text-xl font-bold text-green-500 dark:text-green-400">$23,635</dd>
-    </dl>
-    <dl>
-      <dt class="text-base font-normal text-gray-500 dark:text-gray-400 pb-1">Expense</dt>
-      <dd class="leading-none text-xl font-bold text-red-600 dark:text-red-500">-$18,230</dd>
-    </dl>
+  <div class="px-2 pb-0 rounded-4xl">
+    <div id="bar-chart"></div>
   </div>
-
-  <div id="bar-chart"></div>
-    <div class="grid grid-cols-1 items-center border-gray-200 border-t dark:border-gray-700 justify-between">
-      <div class="flex justify-between items-center pt-5">
-        <!-- Button -->
-        <button
-          id="dropdownDefaultButton"
-          data-dropdown-toggle="lastDaysdropdown"
-          data-dropdown-placement="bottom"
-          class="text-sm font-medium text-gray-500 dark:text-gray-400 hover:text-gray-900 text-center inline-flex items-center dark:hover:text-white"
-          type="button">
-          Last 6 months
-          <svg class="w-2.5 m-2.5 ms-1.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4"/>
-          </svg>
-        </button>
-        <!-- Dropdown menu -->
-        <div id="lastDaysdropdown" class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow-sm w-44 dark:bg-gray-700">
-            <ul class="py-2 text-sm text-gray-700 dark:text-gray-200" aria-labelledby="dropdownDefaultButton">
-              <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Yesterday</a>
-              </li>
-              <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Today</a>
-              </li>
-              <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 7 days</a>
-              </li>
-              <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 30 days</a>
-              </li>
-              <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 90 days</a>
-              </li>
-              <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last 6 months</a>
-              </li>
-              <li>
-                <a href="#" class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Last year</a>
-              </li>
-            </ul>
-        </div>
-        <a
-          href="#"
-          class="uppercase text-sm font-semibold inline-flex items-center rounded-lg text-blue-600 hover:text-blue-700 dark:hover:text-blue-500  hover:bg-gray-100 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700 px-3 py-2">
-          Revenue Report
-          <svg class="w-2.5 h-2.5 ms-1.5 rtl:rotate-180" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 6 10">
-            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 9 4-4-4-4"/>
-          </svg>
-        </a>
-      </div>
-    </div>
 </div>
-<!-- <div id="tester" class="flex flex-wrap items-center content-center justify-between">
-    <script>
 
-	TESTER = document.getElementById('tester');
+<div id="chart">
+<script>
 
-	Plotly.newPlot( TESTER, [{
+function generateYearlyData() {
+    var dates = [];
+    var startDate = new Date('2023-01-01');
+    var endDate = new Date('2023-12-31');
+    var currentDate = new Date(startDate);
+    
+    var currentValue = -40; // Start negative
+    
+    while (currentDate <= endDate) {
+        var randomValue;
+        var rand = Math.random();
+        
+        if (rand < 0.75) {
+            // 75% chance: Negative values (-80 to 0)
+            randomValue = Math.random() * -100;
+        } else if (rand < 0.90) {
+            // 15% chance: Lower negative values (-100 to -80)
+            randomValue = -80 - (Math.random() * 20);
+        } else if (rand < 0.099){
+            // 10% chance: Positive values (0 to 30)
+            randomValue = Math.random() * 100;
+        }
+        else {
+          randomValue = Math.random() * 1000;
+        }
+        
+        // Add some smoothness
+        if (dates.length > 0) {
+            var previousValue = dates[dates.length - 1][1];
+            // 70% chance to stay somewhat close to previous value
+            if (Math.random() < 0.7) {
+                randomValue = previousValue + (Math.random() * 20 - 8);
+                // Clamp to our desired ranges
+                if (randomValue > 30) randomValue = 30;
+                if (randomValue < -100) randomValue = -100;
+            }
+        }
+        
+        dates.push([currentDate.getTime(), parseFloat(randomValue.toFixed(1))]);
+        currentDate.setDate(currentDate.getDate() + 1);
+    }
+    
+    return dates;
+}
 
-	x: [1, 2, 3, 4, 5],
+  var dates = generateYearlyData();
 
-	y: [1, 2, 4, 8, 16] }], {
+var options = {
+    series: [{
+        name: 'User Spending',
+        data: dates,
+        color: '#C4CAD0'
+    }],
+    chart: {
+        type: 'area',
+        stacked: false,
+        height: 350,
+        zoom: {
+            type: 'x',
+            enabled: true,
+            autoScaleYaxis: true
+        },
+        toolbar: {
+            autoSelected: 'zoom'
+        },
+        events: {
+            mounted: function(chartContext, config) {
+                // Zoom to last 30 days when chart first loads
+                var lastDate = dates[dates.length - 1][0];
+                var thirtyDaysAgo = lastDate - (30 * 24 * 60 * 60 * 1000);
+                chartContext.zoomX(thirtyDaysAgo, lastDate);
+            }
+        }
+    },
+    dataLabels: {
+        enabled: false
+    },
+    markers: {
+        size: 0,
+    },
+    fill: {
+        type: 'gradient',
+        gradient: {
+            shadeIntensity: 1,
+            inverseColors: false,
+            opacityFrom: 0.5,
+            opacityTo: 0,
+            stops: [0, 90, 100]
+        },
+    },
+    yaxis: {
+        labels: {
+            formatter: function (val) {
+                return val.toFixed(0);
+            },
+        },
+        title: {
+            text: 'Money Spent'
+        },
+    },
+    xaxis: {
+        type: 'datetime',
+        // Remove the range property from here
+    },
+    tooltip: {
+        shared: false,
+        y: {
+            formatter: function (val) {
+                return val.toFixed(2)
+            }
+        }
+    }
+};
 
-	margin: { t: 0 } } );
+var chart = new ApexCharts(document.querySelector("#chart"), options);
+chart.render();
+</script>
+</div>
+</div>
+</div>
 
-    </script>
-</div> -->
+<div class="m-6 relative max-lg:row-start-3 lg:col-start-2 lg:row-start-2 rounded-4xl">
+  <div class="absolute inset-px rounded-4xl"></div>
+  <div style="background-color: #84915D;" class="relative flex h-full flex-col overflow-hidden rounded-4xl">
+    <div class="px-8 pt-8 sm:px-10 sm:pt-10 text-center"> <!-- Added text-center here -->
+      <p class="mt-2 text-lg font-medium tracking-tight text-white">Significant Statistics</p> <!-- Removed max-lg:text-center -->
+      <p class="mt-2 text-sm/6 text-gray-800 mx-auto">Lets take a look at where you're headed and what you've done.</p> <!-- Removed max-lg:text-center and max-w-lg, added mx-auto -->
+    </div>
+    <div class="@container flex flex-1 items-center max-lg:py-6 lg:pb-2">
+      <ul class="w-full space-y-1 text-white list-inside px-10 pb-3 text-center">
+        <li class="flex items-center justify-center">
+          <svg class="w-3.5 h-3.5 me-2 text-green-500 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+          </svg>
+          Average Spending Over the Last Year: Down 5%
+        </li>
+        <li class="flex items-center justify-center">
+          <svg class="w-3.5 h-3.5 me-2 text-green-500 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+          </svg>
+          Net Savings Over the Last Year: $457
+        </li>
+        <li class="flex items-center justify-center">
+          <svg class="w-3.5 h-3.5 me-2 text-red-500 shrink-0" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
+            <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5Zm3.707 8.207-4 4a1 1 0 0 1-1.414 0l-2-2a1 1 0 0 1 1.414-1.414L9 10.586l3.293-3.293a1 1 0 0 1 1.414 1.414Z"/>
+          </svg>
+          Significant Spending: Spent $680 This Month
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="pointer-events-none absolute inset-px rounded-lg outline outline-white/15"></div>
+</div>
 
 <div style="background-color: #84915D;" class="fixed bottom-0 left-0 z-50 w-full h-10 bg-white border-t border-gray-200 dark:bg-gray-700 dark:border-gray-600 rounded-t-lg">
     <div class="grid h-full max-w-lg grid-cols-3 mx-auto font-medium">
